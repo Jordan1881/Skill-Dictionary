@@ -84,7 +84,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         size="fixed"
         usePortrait={portrait}
         showCover={false}
-        mobileScrollSupport={false}
+        mobileScrollSupport={true}
         disableFlipByClick={true}
         maxShadowOpacity={0.4}
         flippingTime={700}
