@@ -19,6 +19,7 @@ const SKILL_OFFSET = 2
 export default function Book({ skills, grouped, portrait, pageW, pageH }) {
   const bookRef = useRef()
   const [currentSkillIdx, setCurrentSkillIdx] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const handleSelectSkill = useCallback((skillName) => {
     const idx = skills.findIndex(s => s.name === skillName)
@@ -29,14 +30,22 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
 
   const handleFlip = useCallback((e) => {
     const pageIdx = e.data
+    setCurrentPage(pageIdx)
     if (pageIdx >= SKILL_OFFSET) {
       setCurrentSkillIdx(pageIdx - SKILL_OFFSET)
     }
   }, [])
 
+  const flipPrev = useCallback(() => bookRef.current?.pageFlip().flipPrev(), [])
+  const flipNext = useCallback(() => bookRef.current?.pageFlip().flipNext(), [])
+
   // Pad to even number of pages so the last spread is complete
   const skillPages = [...skills]
   if (skillPages.length % 2 !== 0) skillPages.push(null)
+
+  const totalPages = SKILL_OFFSET + skillPages.length
+  const canGoPrev = currentPage > 0
+  const canGoNext = currentPage < totalPages - 1
 
   return (
     <div className="book-stage">
@@ -48,6 +57,23 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
           onSelect={handleSelectSkill}
         />
       )}
+
+      <button
+        className="nav-arrow nav-arrow-prev"
+        onClick={flipPrev}
+        disabled={!canGoPrev}
+        aria-label="Previous page"
+      >
+        ‹
+      </button>
+      <button
+        className="nav-arrow nav-arrow-next"
+        onClick={flipNext}
+        disabled={!canGoNext}
+        aria-label="Next page"
+      >
+        ›
+      </button>
 
       {/* key forces remount when layout changes (resize / orientation flip) */}
       <HTMLFlipBook

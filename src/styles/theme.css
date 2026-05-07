@@ -621,11 +621,50 @@ body {
   .sp-name  { font-size: 1.15rem; }
 }
 
+/* ── Page navigation arrows ─────────────────────────────────── */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  background: var(--color-cover);
+  border: 1px solid rgba(184,145,60,0.4);
+  border-radius: 50%;
+  color: var(--color-gold-lt);
+  font-size: 1.8rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  transition: background 0.15s, opacity 0.15s;
+  padding-bottom: 2px;
+}
+.nav-arrow:hover:not(:disabled) { background: #5a2e08; }
+.nav-arrow:disabled { opacity: 0.2; cursor: default; }
+.nav-arrow-prev { left: -58px; }
+.nav-arrow-next { right: -58px; }
+
+@media (max-width: 899px) {
+  .nav-arrow {
+    position: fixed;
+    top: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
+  .nav-arrow-prev { left: 8px; }
+  .nav-arrow-next { right: 8px; }
+}
+
 /* ── TOC Drawer (portrait-mode navigation) ──────────────────── */
 .toc-drawer-trigger {
   position: fixed;
   top: 14px;
-  left: 14px;
+  right: 14px;
   z-index: 300;
   width: 40px;
   height: 40px;
@@ -659,15 +698,15 @@ body {
 .toc-drawer-panel {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: min(320px, 85vw);
   z-index: 320;
   background: var(--color-page);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.70' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
-  border-right: 1px solid rgba(184,145,60,0.3);
-  box-shadow: 4px 0 30px rgba(0,0,0,0.4);
-  transform: translateX(-105%);
+  border-left: 1px solid rgba(184,145,60,0.3);
+  box-shadow: -4px 0 30px rgba(0,0,0,0.4);
+  transform: translateX(105%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
