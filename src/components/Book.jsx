@@ -64,7 +64,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         disabled={!canGoPrev}
         aria-label="Previous page"
       >
-        ‹
+        ←
       </button>
       <button
         className="nav-arrow nav-arrow-next"
@@ -72,7 +72,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         disabled={!canGoNext}
         aria-label="Next page"
       >
-        ›
+        →
       </button>
 
       {/* key forces remount when layout changes (resize / orientation flip) */}
@@ -84,7 +84,8 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         size="fixed"
         usePortrait={portrait}
         showCover={false}
-        mobileScrollSupport={true}
+        mobileScrollSupport={false}
+        disableFlipByClick={true}
         maxShadowOpacity={0.4}
         flippingTime={700}
         drawShadow={true}
