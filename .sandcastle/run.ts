@@ -23,7 +23,11 @@ const promptArgs = {
 
 try {
   const result = await sandcastle.run({
-    sandbox: docker(),
+    sandbox: docker({
+      env: {
+        GIT_CONFIG_GLOBAL: "/tmp/.gitconfig",
+      },
+    }),
     name: task === "test" ? "TestWriter" : "FeatureImplementer",
     agent: sandcastle.claudeCode("claude-sonnet-4-6"),
     promptFile,

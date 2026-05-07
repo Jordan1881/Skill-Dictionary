@@ -19,8 +19,14 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
 ARG AGENT_UID=1000
 ARG AGENT_GID=1000
 
-# Create agent user
-RUN (groupmod -g $AGENT_GID node 2>/dev/null || true) && usermod -u $AGENT_UID -g $AGENT_GID -d /home/agent -m -l agent node || true
+# Create agent user aligned to host UID/GID
+RUN userdel -r node 2>/dev/null || true && \
+    (groupadd -g $AGENT_GID agent 2>/dev/null || groupmod -n agent $(getent group $AGENT_GID | cut -d: -f1) 2>/dev/null || true) && \
+    useradd -u $AGENT_UID -g $AGENT_GID -d /home/agent -m -s /bin/bash agent && \
+    mkdir -p /home/agent && \
+    chown $AGENT_UID:$AGENT_GID /home/agent && \
+    chmod 755 /home/agent
+
 USER ${AGENT_UID}:${AGENT_GID}
 
 # Install Claude Code CLI
