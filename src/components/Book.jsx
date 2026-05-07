@@ -58,23 +58,6 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         />
       )}
 
-      <button
-        className="nav-arrow nav-arrow-prev"
-        onClick={flipPrev}
-        disabled={!canGoPrev}
-        aria-label="Previous page"
-      >
-        ←
-      </button>
-      <button
-        className="nav-arrow nav-arrow-next"
-        onClick={flipNext}
-        disabled={!canGoNext}
-        aria-label="Next page"
-      >
-        →
-      </button>
-
       {/* key forces remount when layout changes (resize / orientation flip) */}
       <HTMLFlipBook
         key={`${portrait}-${pageW}-${pageH}`}
@@ -118,6 +101,24 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
           </Page>
         ))}
       </HTMLFlipBook>
+
+      {/* Rendered AFTER the flipbook so they sit above its corner hit-areas in the stacking order */}
+      <button
+        className="nav-arrow nav-arrow-prev"
+        onClick={flipPrev}
+        disabled={!canGoPrev}
+        aria-label="Previous page"
+      >
+        ←
+      </button>
+      <button
+        className="nav-arrow nav-arrow-next"
+        onClick={flipNext}
+        disabled={!canGoNext}
+        aria-label="Next page"
+      >
+        →
+      </button>
     </div>
   )
 }

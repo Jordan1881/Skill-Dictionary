@@ -638,6 +638,7 @@ body {
   cursor: pointer;
   transition: opacity 0.2s;
   user-select: none;
+  pointer-events: auto;
 }
 .nav-arrow:hover:not(:disabled) { opacity: 0.65; }
 .nav-arrow:disabled { opacity: 0.1; cursor: default; }
