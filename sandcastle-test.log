@@ -1,0 +1,23 @@
+
+🏰 Skill Dictionary Agent
+
+Task: test
+Target: useSkills Hook
+
+[TestWriter] Started on branch main
+  tail -f .sandcastle/logs/main-testwriter.log
+
+❌ Agent failed:
+(FiberFailure) ExecError: Command failed (exit 255): git config --global --add safe.directory "/home/agent/workspace"
+error: could not lock config file /home/agent/.gitconfig: Permission denied
+
+    at /Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/@ai-hero/sandcastle/src/SandboxLifecycle.ts:34:11
+    at <anonymous> (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:151:36)
+    at body (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/Utils.ts:786:14)
+    at Object.OnSuccess (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:151:12)
+    at FiberRuntime.Success (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:1185:37)
+    at <anonymous> (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:1398:53)
+    at f (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/tracer.ts:101:19)
+    at runLoop (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:1384:34)
+    at evaluateEffect (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:950:27)
+    at evaluateMessageWhileSuspended (/Users/jordan/Desktop/AI Project/skill-dictionary/node_modules/effect/src/internal/fiberRuntime.ts:918:14)
