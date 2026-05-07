@@ -36,8 +36,15 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
     }
   }, [])
 
-  const flipPrev = useCallback(() => bookRef.current?.pageFlip().flipPrev(), [])
-  const flipNext = useCallback(() => bookRef.current?.pageFlip().flipNext(), [])
+  const flipPrev = useCallback((e) => {
+    e.stopPropagation()
+    bookRef.current?.pageFlip().flipPrev()
+  }, [])
+
+  const flipNext = useCallback((e) => {
+    e.stopPropagation()
+    bookRef.current?.pageFlip().flipNext()
+  }, [])
 
   // Pad to even number of pages so the last spread is complete
   const skillPages = [...skills]
@@ -105,7 +112,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
       {/* Rendered AFTER the flipbook so they sit above its corner hit-areas in the stacking order */}
       <button
         className="nav-arrow nav-arrow-prev"
-        onClick={flipPrev}
+        onPointerDown={flipPrev}
         disabled={!canGoPrev}
         aria-label="Previous page"
       >
@@ -113,7 +120,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
       </button>
       <button
         className="nav-arrow nav-arrow-next"
-        onClick={flipNext}
+        onPointerDown={flipNext}
         disabled={!canGoNext}
         aria-label="Next page"
       >
