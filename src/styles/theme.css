@@ -24,9 +24,10 @@
   --color-spine:       #2e1400;
   --color-accent:      #7a1f1f;   /* drop-cap red */
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'Lora', Georgia, serif;
-  --font-mono:    'Source Code Pro', 'Courier New', monospace;
+  --font-display:    'Playfair Display', Georgia, serif;
+  --font-body:       'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  --font-serif-alt:  'Cormorant Garamond', Georgia, serif;
+  --font-mono:       'JetBrains Mono', 'Source Code Pro', 'Courier New', monospace;
 
   --shadow-book: 0 30px 90px rgba(0,0,0,0.65), 0 10px 30px rgba(0,0,0,0.4);
 }
@@ -108,12 +109,31 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   text-align: center;
-  padding: 0 50px;
   border: 1px solid rgba(184,145,60,0.28);
-  margin: 40px;
-  padding: 40px 50px;
+  margin: 32px;
+  padding: 28px 40px;
+}
+
+.inside-cover-badge {
+  margin-bottom: 4px;
+  line-height: 0;
+}
+
+.inside-cover-gold-line {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.45;
+}
+
+.inside-cover-latin {
+  font-family: var(--font-serif-alt);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.1em;
 }
 
 .inside-cover-ornament {
@@ -493,7 +513,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: clamp(8px, 2vh, 20px);
   overflow: hidden;
 }
 
@@ -516,38 +536,69 @@ body {
   border-right: 1px solid rgba(184,145,60,0.22);
 }
 
-.cover-title {
-  font-family: var(--font-display);
-  font-size: 2.55rem;
-  font-weight: 700;
-  color: var(--color-gold-lt);
-  text-align: center;
-  line-height: 1.25;
-  letter-spacing: 0.04em;
-  padding: 0 90px;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 0 50px rgba(184,145,60,0.12);
+/* ── Corner ornaments ──────────────────────────────────────── */
+.cover-corner {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.cover-corner-tl { top: 14px;  left: 14px;  }
+.cover-corner-tr { top: 14px;  right: 14px; transform: scaleX(-1); }
+.cover-corner-bl { bottom: 14px; left: 14px;  transform: scaleY(-1); }
+.cover-corner-br { bottom: 14px; right: 14px; transform: scale(-1,-1); }
+
+/* ── Badge wrapper — size is computed in JS via useBookSize ─ */
+.cover-badge-wrap {
   position: relative;
   z-index: 1;
+  line-height: 0;
+  flex-shrink: 0;
 }
 
-.cover-ornament {
+/* ── Wordmark block ────────────────────────────────────────── */
+.cover-wordmark {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cover-wordmark-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.2rem, 3.5vw, 2.4rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold-lt);
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+}
+
+.cover-wordmark-dot {
+  color: var(--color-accent);
+}
+
+.cover-wordmark-tagline {
+  font-family: var(--font-serif-alt);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(0.65rem, 1.4vw, 0.88rem);
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.cover-wordmark-mono {
+  font-family: var(--font-mono);
+  font-size: clamp(0.55rem, 1vw, 0.65rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-gold);
   opacity: 0.5;
-  font-size: 1.5rem;
-  letter-spacing: 0.6em;
-  position: relative;
-  z-index: 1;
-}
-
-.cover-subtitle {
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-style: italic;
-  color: rgba(212,172,86,0.45);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 1;
 }
 
 .cover-hint {
