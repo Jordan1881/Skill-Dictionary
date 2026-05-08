@@ -76,8 +76,8 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         showCover={false}
         mobileScrollSupport={true}
         disableFlipByClick={true}
-        maxShadowOpacity={0.4}
-        flippingTime={700}
+        maxShadowOpacity={0.55}
+        flippingTime={850}
         drawShadow={true}
         onFlip={handleFlip}
         className="flip-book"
