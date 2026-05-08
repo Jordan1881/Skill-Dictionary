@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -20,7 +21,7 @@ const mdComponents = {
   h1: ({ children }) => <h2>{children}</h2>,
 }
 
-export default function SkillPage({ skill, pageNumber }) {
+const SkillPage = React.memo(function SkillPage({ skill, pageNumber }) {
   if (!skill) return null
 
   return (
@@ -46,4 +47,6 @@ export default function SkillPage({ skill, pageNumber }) {
       </div>
     </div>
   )
-}
+})
+
+export default SkillPage

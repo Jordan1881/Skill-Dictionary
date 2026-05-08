@@ -25,7 +25,7 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
     const idx = skills.findIndex(s => s.name === skillName)
     if (idx === -1) return
     setCurrentSkillIdx(idx)
-    bookRef.current?.pageFlip().flip(idx + SKILL_OFFSET)
+    bookRef.current?.pageFlip().turnToPage(idx + SKILL_OFFSET)
   }, [skills])
 
   const handleFlip = useCallback((e) => {
@@ -77,8 +77,8 @@ export default function Book({ skills, grouped, portrait, pageW, pageH }) {
         mobileScrollSupport={true}
         disableFlipByClick={true}
         maxShadowOpacity={0.55}
-        flippingTime={850}
-        drawShadow={true}
+        flippingTime={450}
+        drawShadow={false}
         onFlip={handleFlip}
         className="flip-book"
         startPage={0}
