@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { CircularBadge } from './LogoSymbols'
 import { useBookSize } from '../hooks/useBookSize'
+import logoSvg from '../assets/skill-dictionary-logo.svg'
 
 function CornerArm({ color = '#b8913c' }) {
   return (
@@ -59,7 +59,7 @@ export default function Cover({ onOpen }) {
         <CornerOrnaments/>
 
         <div className="cover-badge-wrap">
-          <CircularBadge size={badgeSize} idPrefix="cover-badge"/>
+          <img src={logoSvg} width={badgeSize} height={badgeSize} alt="Skill Dictionary emblem" draggable={false}/>
         </div>
 
         <div className="cover-wordmark">
